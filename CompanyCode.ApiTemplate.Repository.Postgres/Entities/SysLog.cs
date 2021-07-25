@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace FACTS.GenericBooking.Repository.Postgres.Entities
+namespace CompanyCode.ApiTemplate.Repository.Postgres.Entities
 {
     [Table("sys_log")]
     public partial class SysLog

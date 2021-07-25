@@ -1,6 +1,5 @@
 ﻿using CompanyCode.ApiTemplate.Common.Configuration;
-
-using FACTS.GenericBooking.Repository.Postgres;
+using CompanyCode.ApiTemplate.Repository.Postgres;
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

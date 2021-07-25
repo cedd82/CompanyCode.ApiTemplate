@@ -3,9 +3,7 @@ using CompanyCode.ApiTemplate.Repository.Postgres.Entities;
 
 using Microsoft.EntityFrameworkCore;
 
-using FACTS.GenericBooking.Repository.Postgres.Entities;
-
-namespace FACTS.GenericBooking.Repository.Postgres
+namespace CompanyCode.ApiTemplate.Repository.Postgres
 {
     public partial class PostgresDbContext : DbContext
     {
@@ -29,4 +27,5 @@ namespace FACTS.GenericBooking.Repository.Postgres
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
+    
 }
