@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+      <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="ErrorMessages\" />
+    <Folder Include="Models\" />
+    <Folder Include="Services\Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CompanyCode.ApiTemplate.Repository.Ingres\CompanyCode.ApiTemplate.Repository.Ingres.csproj" />
+    <ProjectReference Include="..\CompanyCode.ApiTemplate.Repository.Postgres\CompanyCode.ApiTemplate.Repository.Postgres.csproj" />
+  </ItemGroup>
+
+</Project>
