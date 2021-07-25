@@ -6,9 +6,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentNHibernate" />
-        <PackageReference Include="Microsoft.Extensions.Logging" />
-        <PackageReference Include="Newtonsoft.Json" />
-        <PackageReference Include="System.Data.Odbc" />
+        <PackageReference Include="FluentNHibernate"/>
+        <PackageReference Include="Microsoft.Extensions.Logging"/>
+        <PackageReference Include="Newtonsoft.Json"/>
+        <PackageReference Include="System.Data.Odbc"/>
     </ItemGroup>
 </Project>

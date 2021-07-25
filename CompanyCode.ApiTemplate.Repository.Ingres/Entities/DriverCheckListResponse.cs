@@ -2,56 +2,32 @@ using System;
 
 using FluentNHibernate.Mapping;
 
-namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities {
+namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities
+{
     public class DriverCheckListResponse
     {
-        public virtual int DriverId {get; set;}
-        public virtual DateTime CheckListTimeStamp {get; set;}
-        public virtual int CheckListSeqNo {get; set;}
-        public virtual int Capacity {get; set;}
-        public virtual int IsAllOk {get; set;}
-        public virtual string EquipmentNo {get; set;}
-        public virtual string CheckListQuestion {get; set;}
-        public virtual string DriverResponse {get; set;}
-        public virtual DateTime SystemTimeStamp {get; set;}
-        public virtual string Signature {get; set;}
+        public virtual int Capacity { get; set; }
+        public virtual string CheckListQuestion { get; set; }
+        public virtual int CheckListSeqNo { get; set; }
+        public virtual DateTime CheckListTimeStamp { get; set; }
+        public virtual int DriverId { get; set; }
+        public virtual string DriverResponse { get; set; }
+        public virtual string EquipmentNo { get; set; }
+        public virtual int IsAllOk { get; set; }
+        public virtual string Signature { get; set; }
+        public virtual DateTime SystemTimeStamp { get; set; }
 
-        protected bool Equals(DriverCheckListResponse other)
-        {
-            if (other == null)
-            {
-                return false;
-            }
-
-            return DriverId.Equals(other.DriverId)
-                   && CheckListTimeStamp.Equals(other.CheckListTimeStamp)
-                   && CheckListSeqNo.Equals(other.CheckListSeqNo)
-                   && Capacity.Equals(other.Capacity)
-                   && IsAllOk.Equals(other.IsAllOk)
-                   && EquipmentNo.Equals(other.EquipmentNo)
-                   && CheckListQuestion.Equals(other.CheckListQuestion)
-                   && DriverResponse.Equals(other.DriverResponse)
-                   && SystemTimeStamp.Equals(other.SystemTimeStamp)
-                   && Signature.Equals(other.Signature);
-        }
-        
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
-            {
                 return false;
-            }
             if (ReferenceEquals(this, obj))
-            {
                 return true;
-            }
-            if (obj.GetType() != typeof (DriverCheckListResponse))
-            {
+            if (obj.GetType() != typeof(DriverCheckListResponse))
                 return false;
-            }
             return Equals((DriverCheckListResponse) obj);
         }
-        
+
         public override int GetHashCode()
         {
             unchecked
@@ -72,74 +48,90 @@ namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities {
                 return hash;
             }
         }
-}
 
+        protected bool Equals(DriverCheckListResponse other)
+        {
+            if (other == null)
+                return false;
 
-    public class DriverCheckListResponseMap: ClassMap<DriverCheckListResponse>
+            return DriverId.Equals(other.DriverId)
+                   && CheckListTimeStamp.Equals(other.CheckListTimeStamp)
+                   && CheckListSeqNo.Equals(other.CheckListSeqNo)
+                   && Capacity.Equals(other.Capacity)
+                   && IsAllOk.Equals(other.IsAllOk)
+                   && EquipmentNo.Equals(other.EquipmentNo)
+                   && CheckListQuestion.Equals(other.CheckListQuestion)
+                   && DriverResponse.Equals(other.DriverResponse)
+                   && SystemTimeStamp.Equals(other.SystemTimeStamp)
+                   && Signature.Equals(other.Signature);
+        }
+    }
+
+    public class DriverCheckListResponseMap : ClassMap<DriverCheckListResponse>
     {
         public DriverCheckListResponseMap()
         {
             Table("driver_chklist_resp");
             CompositeId()
-                .KeyProperty(x => x.DriverId, keyPropertyAction: k =>
+                .KeyProperty(x => x.DriverId, k =>
                 {
                     k.ColumnName("driver_id");
                     k.Type(typeof(int));
                     k.Access.Property();
                 })
-                .KeyProperty(x => x.CheckListTimeStamp, keyPropertyAction: k =>
+                .KeyProperty(x => x.CheckListTimeStamp, k =>
                 {
                     k.ColumnName("chklist_tms");
                     k.Type(typeof(DateTime));
                     k.Access.Property();
                 })
-                .KeyProperty(x => x.CheckListSeqNo, keyPropertyAction: k =>
+                .KeyProperty(x => x.CheckListSeqNo, k =>
                 {
                     k.ColumnName("chklist_seq_no");
                     k.Type(typeof(int));
                     k.Access.Property();
                 })
-                .KeyProperty(x => x.Capacity, keyPropertyAction: k =>
+                .KeyProperty(x => x.Capacity, k =>
                 {
                     k.ColumnName("capacity");
                     k.Type(typeof(int));
                     k.Access.Property();
                 })
-                .KeyProperty(x => x.IsAllOk, keyPropertyAction: k =>
+                .KeyProperty(x => x.IsAllOk, k =>
                 {
                     k.ColumnName("is_all_ok");
                     k.Type(typeof(int));
                     k.Access.Property();
                 })
-                .KeyProperty(x => x.EquipmentNo, keyPropertyAction: k =>
+                .KeyProperty(x => x.EquipmentNo, k =>
                 {
                     k.ColumnName("equipment_no");
                     k.Type(typeof(string));
                     k.Access.Property();
                     k.Length(30);
                 })
-                .KeyProperty(x => x.CheckListQuestion, keyPropertyAction: k =>
+                .KeyProperty(x => x.CheckListQuestion, k =>
                 {
                     k.ColumnName("chklist_question");
                     k.Type(typeof(string));
                     k.Access.Property();
                     k.Length(300);
                 })
-                .KeyProperty(x => x.DriverResponse, keyPropertyAction: k =>
+                .KeyProperty(x => x.DriverResponse, k =>
                 {
                     k.ColumnName("driver_resp");
                     k.Type(typeof(string));
                     k.Access.Property();
                     k.Length(10);
                 })
-                .KeyProperty(x => x.SystemTimeStamp, keyPropertyAction: k =>
+                .KeyProperty(x => x.SystemTimeStamp, k =>
                 {
                     k.ColumnName("system_tms");
                     k.Type(typeof(DateTime));
                     k.Access.Property();
                     k.Length(3);
                 })
-                .KeyProperty(x => x.Signature, keyPropertyAction: k =>
+                .KeyProperty(x => x.Signature, k =>
                 {
                     k.ColumnName("signature");
                     k.Type(typeof(string));

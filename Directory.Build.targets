@@ -1,61 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <Project>
     <ItemGroup>
-        <PackageReference Update="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-        <PackageReference Update="ClosedXML" Version="0.95.4" />
-        <PackageReference Update="Dapper" Version="2.0.90" />
-        <PackageReference Update="Dapper.Contrib" Version="2.0.78" />
-        <PackageReference Update="Dapper.SqlBuilder" Version="2.0.78" />
-        <PackageReference Update="FluentNHibernate" Version="3.1.0" />
-        <PackageReference Update="FluentValidation.AspNetCore" Version="10.3.0" />
-        <PackageReference Update="MicroElements.Swashbuckle.FluentValidation" Version="5.1.0" />
-        <PackageReference Update="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.7" />
-        <PackageReference Update="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.7" />
-        <PackageReference Update="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.8" />
-        <PackageReference Update="Microsoft.EntityFrameworkCore" Version="5.0.7" />
+        <PackageReference Update="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1"/>
+        <PackageReference Update="ClosedXML" Version="0.95.4"/>
+        <PackageReference Update="Dapper" Version="2.0.90"/>
+        <PackageReference Update="Dapper.Contrib" Version="2.0.78"/>
+        <PackageReference Update="Dapper.SqlBuilder" Version="2.0.78"/>
+        <PackageReference Update="FluentNHibernate" Version="3.1.0"/>
+        <PackageReference Update="FluentValidation.AspNetCore" Version="10.3.0"/>
+        <PackageReference Update="MicroElements.Swashbuckle.FluentValidation" Version="5.1.0"/>
+        <PackageReference Update="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.7"/>
+        <PackageReference Update="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.7"/>
+        <PackageReference Update="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.8"/>
+        <PackageReference Update="Microsoft.EntityFrameworkCore" Version="5.0.7"/>
         <PackageReference Update="Microsoft.EntityFrameworkCore.Design" Version="5.0.7"/>
-        <PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.7" />
+        <PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.7"/>
         <PackageReference Update="Microsoft.EntityFrameworkCore.Tools" Version="5.0.7"/>
-        <PackageReference Update="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
-        <PackageReference Update="Microsoft.Extensions.Configuration" Version="5.0.0" />
-        <PackageReference Update="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
-        <PackageReference Update="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0" />
-        <PackageReference Update="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
-        <PackageReference Update="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
-        <PackageReference Update="Microsoft.Extensions.Hosting" Version="5.0.0" />
-        <PackageReference Update="Microsoft.Extensions.Hosting.WindowsServices" Version="5.0.1" />
-        <PackageReference Update="Microsoft.Extensions.Http" Version="5.0.0" />
-        <PackageReference Update="Microsoft.Extensions.Logging" Version="5.0.0" />
-        <PackageReference Update="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-        <PackageReference Update="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
-        <PackageReference Update="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
-        <PackageReference Update="Microsoft.Extensions.Logging.EventLog" Version="5.0.0" />
-        <PackageReference Update="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
-        <PackageReference Update="NLog" Version="4.7.10" />
-        <PackageReference Update="NLog.Extensions.Hosting" Version="1.7.3" />
-        <PackageReference Update="NLog.Extensions.Logging" Version="1.7.3" />
-        <PackageReference Update="NLog.Schema" Version="4.7.10" />
-        <PackageReference Update="NLog.Web.AspNetCore" Version="4.13.0" />
-        <PackageReference Update="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Update="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
-        <PackageReference Update="NWebsec.AspNetCore.Middleware" Version="3.0.0" />
-        <PackageReference Update="Swashbuckle.AspNetCore.Filters" Version="7.0.2" />
-        <PackageReference Update="ObjectDumper.NET" Version="3.1.21178.1" />
-        <PackageReference Update="Quartz" Version="3.3.2" />
-        <PackageReference Update="Quartz.Extensions.Hosting" Version="3.3.2" />
-        <PackageReference Update="RabbitMQ.Client" Version="6.2.2" />
-        <PackageReference Update="Swashbuckle.AspNetCore" Version="6.1.4" />
-        <PackageReference Update="Swashbuckle.AspNetCore.Annotations" Version="6.1.4" />
-        <PackageReference Update="Swashbuckle.AspNetCore.Newtonsoft" Version="6.1.4" />
-        <PackageReference Update="Swashbuckle.AspNetCore.Swagger" Version="6.1.4" />
-        <PackageReference Update="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.4" />
-        <PackageReference Update="Swashbuckle.AspNetCore.SwaggerUI" Version="6.1.4" />
-        <PackageReference Update="System.ComponentModel.Annotations" Version="5.0.0" />
-        <PackageReference Update="System.Data.Odbc" Version="5.0.0" />
-        <PackageReference Update="System.IdentityModel.Tokens.Jwt" Version="6.12.0" />
-        <PackageReference Update="System.Linq.Dynamic.Core" Version="1.2.11" />
-        <PackageReference Update="System.Linq.Expressions" Version="4.3.0" />
-        <PackageReference Update="Wangkanai.Detection" Version="3.0.0" />
-        <PackageReference Update="Z.EntityFramework.Plus.EFCore" Version="5.2.4" />
+        <PackageReference Update="Microsoft.Extensions.Caching.Memory" Version="5.0.0"/>
+        <PackageReference Update="Microsoft.Extensions.Configuration" Version="5.0.0"/>
+        <PackageReference Update="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0"/>
+        <PackageReference Update="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0"/>
+        <PackageReference Update="Microsoft.Extensions.Configuration.Json" Version="5.0.0"/>
+        <PackageReference Update="Microsoft.Extensions.DependencyInjection" Version="5.0.2"/>
+        <PackageReference Update="Microsoft.Extensions.Hosting" Version="5.0.0"/>
+        <PackageReference Update="Microsoft.Extensions.Hosting.WindowsServices" Version="5.0.1"/>
+        <PackageReference Update="Microsoft.Extensions.Http" Version="5.0.0"/>
+        <PackageReference Update="Microsoft.Extensions.Logging" Version="5.0.0"/>
+        <PackageReference Update="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0"/>
+        <PackageReference Update="Microsoft.Extensions.Logging.Console" Version="5.0.0"/>
+        <PackageReference Update="Microsoft.Extensions.Logging.Debug" Version="5.0.0"/>
+        <PackageReference Update="Microsoft.Extensions.Logging.EventLog" Version="5.0.0"/>
+        <PackageReference Update="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0"/>
+        <PackageReference Update="NLog" Version="4.7.10"/>
+        <PackageReference Update="NLog.Extensions.Hosting" Version="1.7.3"/>
+        <PackageReference Update="NLog.Extensions.Logging" Version="1.7.3"/>
+        <PackageReference Update="NLog.Schema" Version="4.7.10"/>
+        <PackageReference Update="NLog.Web.AspNetCore" Version="4.13.0"/>
+        <PackageReference Update="Newtonsoft.Json" Version="13.0.1"/>
+        <PackageReference Update="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7"/>
+        <PackageReference Update="NWebsec.AspNetCore.Middleware" Version="3.0.0"/>
+        <PackageReference Update="Swashbuckle.AspNetCore.Filters" Version="7.0.2"/>
+        <PackageReference Update="ObjectDumper.NET" Version="3.1.21178.1"/>
+        <PackageReference Update="Quartz" Version="3.3.2"/>
+        <PackageReference Update="Quartz.Extensions.Hosting" Version="3.3.2"/>
+        <PackageReference Update="RabbitMQ.Client" Version="6.2.2"/>
+        <PackageReference Update="Swashbuckle.AspNetCore" Version="6.1.4"/>
+        <PackageReference Update="Swashbuckle.AspNetCore.Annotations" Version="6.1.4"/>
+        <PackageReference Update="Swashbuckle.AspNetCore.Newtonsoft" Version="6.1.4"/>
+        <PackageReference Update="Swashbuckle.AspNetCore.Swagger" Version="6.1.4"/>
+        <PackageReference Update="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.4"/>
+        <PackageReference Update="Swashbuckle.AspNetCore.SwaggerUI" Version="6.1.4"/>
+        <PackageReference Update="System.ComponentModel.Annotations" Version="5.0.0"/>
+        <PackageReference Update="System.Data.Odbc" Version="5.0.0"/>
+        <PackageReference Update="System.IdentityModel.Tokens.Jwt" Version="6.12.0"/>
+        <PackageReference Update="System.Linq.Dynamic.Core" Version="1.2.11"/>
+        <PackageReference Update="System.Linq.Expressions" Version="4.3.0"/>
+        <PackageReference Update="Wangkanai.Detection" Version="3.0.0"/>
+        <PackageReference Update="Z.EntityFramework.Plus.EFCore" Version="5.2.4"/>
     </ItemGroup>
 </Project>

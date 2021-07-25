@@ -1,48 +1,48 @@
 ﻿{
-   "CodeGenerationMode": 0,
-   "ContextClassName": "CryptoContext",
-   "ContextNamespace": null,
-   "DefaultDacpacSchema": null,
-   "FilterSchemas": false,
-   "IncludeConnectionString": false,
-   "ModelNamespace": null,
-   "OutputContextPath": ".\/",
-   "OutputPath": "Entities",
-   "ProjectRootNamespace": "CompanyCode.ApiTemplate.Repository.SqlServer",
-   "Schemas": null,
-   "SelectedHandlebarsLanguage": 0,
-   "SelectedToBeGenerated": 0,
-   "Tables": [
-      {
-         "Name": "[dbo].[CmcCoinListing]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[CmcCoinListingData]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[CmcGlobalData]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[sys_log]",
-         "ObjectType": 0
-      }
-   ],
-   "UiHint": "CPC.Crypto",
-   "UseBoolPropertiesWithoutDefaultSql": false,
-   "UseDatabaseNames": false,
-   "UseDbContextSplitting": false,
-   "UseFluentApiOnly": false,
-   "UseHandleBars": false,
-   "UseInflector": false,
-   "UseLegacyPluralizer": false,
-   "UseNoConstructor": false,
-   "UseNoNavigations": false,
-   "UseNoObjectFilter": false,
-   "UseNodaTime": false,
-   "UseNullableReferences": false,
-   "UseSchemaFolders": false,
-   "UseSpatial": false
+  "CodeGenerationMode" : 0,
+  "ContextClassName" : "CryptoContext",
+  "ContextNamespace" : null,
+  "DefaultDacpacSchema" : null,
+  "FilterSchemas" : false,
+  "IncludeConnectionString" : false,
+  "ModelNamespace" : null,
+  "OutputContextPath" : ".\/",
+  "OutputPath" : "Entities",
+  "ProjectRootNamespace" : "CompanyCode.ApiTemplate.Repository.SqlServer",
+  "Schemas" : null,
+  "SelectedHandlebarsLanguage" : 0,
+  "SelectedToBeGenerated" : 0,
+  "Tables" : [
+    {
+      "Name" : "[dbo].[CmcCoinListing]",
+      "ObjectType" : 0
+    },
+    {
+      "Name" : "[dbo].[CmcCoinListingData]",
+      "ObjectType" : 0
+    },
+    {
+      "Name" : "[dbo].[CmcGlobalData]",
+      "ObjectType" : 0
+    },
+    {
+      "Name" : "[dbo].[sys_log]",
+      "ObjectType" : 0
+    }
+  ],
+  "UiHint" : "CPC.Crypto",
+  "UseBoolPropertiesWithoutDefaultSql" : false,
+  "UseDatabaseNames" : false,
+  "UseDbContextSplitting" : false,
+  "UseFluentApiOnly" : false,
+  "UseHandleBars" : false,
+  "UseInflector" : false,
+  "UseLegacyPluralizer" : false,
+  "UseNoConstructor" : false,
+  "UseNoNavigations" : false,
+  "UseNoObjectFilter" : false,
+  "UseNodaTime" : false,
+  "UseNullableReferences" : false,
+  "UseSchemaFolders" : false,
+  "UseSpatial" : false
 }

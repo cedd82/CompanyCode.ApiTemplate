@@ -4,14 +4,12 @@ namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities
 {
     public class AccountCustomerCeiling
     {
+        public virtual int AccountCustomerNo { get; set; }
+        public virtual float VolumeCeiling { get; set; }
+        public virtual float WeightCeiling { get; set; }
+    }
 
-        public virtual int AccountCustomerNo {get; set;}
-        public virtual float WeightCeiling {get; set;}
-        public virtual float VolumeCeiling {get; set;}
-}
-
-
-    public class AccountCustomerCeilingMap: ClassMap<AccountCustomerCeiling>
+    public class AccountCustomerCeilingMap : ClassMap<AccountCustomerCeiling>
     {
         public AccountCustomerCeilingMap()
         {

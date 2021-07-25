@@ -8,9 +8,7 @@ namespace CompanyCode.ApiTemplate.Common.ExtensionMethods
         {
             Match match = regex.Match(value);
             if (!match.Success)
-            {
                 return 0;
-            }
 
             return decimal.TryParse(match.Groups[groupName].Value, out decimal extract) ? extract : 0;
         }
@@ -19,9 +17,7 @@ namespace CompanyCode.ApiTemplate.Common.ExtensionMethods
         {
             Match match = regex.Match(value);
             if (!match.Success)
-            {
                 return 0;
-            }
 
             return int.TryParse(match.Groups[groupName].Value, out int extract) ? extract : 0;
         }
@@ -30,20 +26,16 @@ namespace CompanyCode.ApiTemplate.Common.ExtensionMethods
         {
             Match match = regex.Match(value);
             if (!match.Success)
-            {
                 return null;
-            }
 
-            return decimal.TryParse(match.Groups[groupName].Value, out decimal extract) ? extract : (decimal?) null;
+            return decimal.TryParse(match.Groups[groupName].Value, out decimal extract) ? extract : null;
         }
 
         public static string ExtractString(this string value, Regex regex, string groupName)
         {
             Match match = regex.Match(value);
             if (!match.Success)
-            {
                 return "";
-            }
 
             return match.Groups[groupName].Value;
         }

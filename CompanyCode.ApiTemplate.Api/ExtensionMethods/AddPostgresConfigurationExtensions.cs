@@ -16,18 +16,15 @@ namespace CompanyCode.ApiTemplate.Api.ExtensionMethods
             services.AddDbContext<PostgresDbContext>(options =>
             {
                 options.UseNpgsql(databaseConnections.PostgresDatabaseConnection);
-                EventId[] events = new[] {new EventId(7777, "in memory linq execution")};
+                EventId[] events = {new EventId(7777, "in memory linq execution")};
                 if (hostingEnvironment.IsDevelopment())
                 {
                     options.EnableSensitiveDataLogging();
                     options.ConfigureWarnings(x => x.Throw(events));
                 }
                 else
-                {
                     options.ConfigureWarnings(x => x.Log(events));
-                }
             });
-            
         }
     }
 }

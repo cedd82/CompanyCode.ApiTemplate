@@ -1,7 +1,8 @@
 ﻿using System;
 
-using Microsoft.AspNetCore.Mvc;
 using CompanyCode.ApiTemplate.Common.Models;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace CompanyCode.ApiTemplate.Api.Controllers
 {
@@ -21,7 +22,7 @@ namespace CompanyCode.ApiTemplate.Api.Controllers
                 }
             });
         }
-        
+
         [ApiExplorerSettings(IgnoreApi = true)]
         public IActionResult ApiOk()
         {
@@ -46,25 +47,6 @@ namespace CompanyCode.ApiTemplate.Api.Controllers
                     Timestamp = DateTime.Now.ToString("s")
                 }
             });
-        }
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        protected void SaveToFile<T>(T result, string customFileName = "")  where T: class
-        {
-        #if !DEBUG
-            string serviceResultClassName = result.GetType().Name;
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Formatting.Indented);
-            string dir = @"d:\temp\vlmsCustomerServiceResults";
-            if (!Directory.Exists(dir))
-            {
-                Directory.CreateDirectory(dir);
-            }
-            
-            string fileName = $@"{dir}\{serviceResultClassName}-{customFileName}-{DateTime.Now:yyyMMdd-hhmmss}.json";
-            using StreamWriter writer = new StreamWriter(fileName);
-            writer.Write(json);
-            writer.Flush();
-        #endif
         }
     }
 }

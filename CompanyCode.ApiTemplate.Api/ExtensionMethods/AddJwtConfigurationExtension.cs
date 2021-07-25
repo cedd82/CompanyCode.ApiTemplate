@@ -39,9 +39,7 @@ namespace CompanyCode.ApiTemplate.Api.ExtensionMethods
                         {
                             string userCode = context.Principal?.Identity?.Name?.ToUpper();
                             if (string.IsNullOrEmpty(userCode))
-                            {
                                 context.Fail("Unauthorized");
-                            }
 
                             return Task.CompletedTask;
                         }

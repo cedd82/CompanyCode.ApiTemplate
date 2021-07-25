@@ -11,7 +11,7 @@ namespace CompanyCode.ApiTemplate.Api.FluentValidators.Auth
         public CreateUserRequestValidator()
         {
             RuleFor(m => m.Password)
-                .NewPassword(8, 30);
+                .NewPassword();
             RuleFor(m => m.Username)
                 .NotEmpty()
                 .WithMessage("A0351: Username is required")

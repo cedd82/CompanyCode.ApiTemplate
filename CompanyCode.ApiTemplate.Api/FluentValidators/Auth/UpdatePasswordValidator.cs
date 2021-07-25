@@ -13,7 +13,7 @@ namespace CompanyCode.ApiTemplate.Api.FluentValidators.Auth
                 .NotEmpty()
                 .WithMessage(ErrorMessages.ErrUserMissingPassword.ToString());
             RuleFor(m => m.NewPassword)
-                .NewPassword(8, 30);
+                .NewPassword();
         }
     }
 }

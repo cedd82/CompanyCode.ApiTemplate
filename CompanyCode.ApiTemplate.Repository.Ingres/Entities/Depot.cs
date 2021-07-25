@@ -1,44 +1,46 @@
 using FluentNHibernate.Mapping;
 
-namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities {
+namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities
+{
     public class Depot
     {
-        public virtual string DepotCode {get; set;}
-        public virtual string TpgCode {get; set;}
-        public virtual string DepotAlias {get; set;}
-        public virtual string Name {get; set;}
-        public virtual int BusinessEndTime {get; set;}
-        public virtual int BusinessStartTime {get; set;}
-        public virtual string FaxNo {get; set;}
-        public virtual int FCLAccountCustomerNo {get; set;}
-        public virtual int IsLogDelete {get; set;}
-        public virtual string PhoneNo {get; set;}
-        public virtual string StandardNo {get; set;}
-        public virtual string Street {get; set;}
-        public virtual string Suburb {get; set;}
-        public virtual string State {get; set;}
-        public virtual string Postcode {get; set;}
-        public virtual int LocationId {get; set;}
-        public virtual string PlanGroupCode {get; set;}
-        public virtual int IsDefTpgDepot {get; set;}
-        public virtual string BusinessUnitCode {get; set;}
-        public virtual string WebName {get; set;}
-        public virtual int MetCutOffTime {get; set;}
-        public virtual int MetRunTime {get; set;}
-        public virtual int RurCutOffTime {get; set;}
-        public virtual int RurRunTime {get; set;}
-        public virtual int StartTime {get; set;}
-        public virtual int XdockTime {get; set;}
-        public virtual int IsCg {get; set;}
-        public virtual string GlbuCode {get; set;}
-        public virtual float GFLatitude {get; set;}
-        public virtual float GFLongitude {get; set;}
-        public virtual float GFRadius {get; set;}
-        public virtual int IsGFEnable {get; set;}
-        public virtual string ContactEmailid {get; set;}
-        public virtual string Mobile {get; set;}
+        public virtual int BusinessEndTime { get; set; }
+        public virtual int BusinessStartTime { get; set; }
+        public virtual string BusinessUnitCode { get; set; }
+        public virtual string ContactEmailid { get; set; }
+        public virtual string DepotAlias { get; set; }
+        public virtual string DepotCode { get; set; }
+        public virtual string FaxNo { get; set; }
+        public virtual int FCLAccountCustomerNo { get; set; }
+        public virtual float GFLatitude { get; set; }
+        public virtual float GFLongitude { get; set; }
+        public virtual float GFRadius { get; set; }
+        public virtual string GlbuCode { get; set; }
+        public virtual int IsCg { get; set; }
+        public virtual int IsDefTpgDepot { get; set; }
+        public virtual int IsGFEnable { get; set; }
+        public virtual int IsLogDelete { get; set; }
+        public virtual int LocationId { get; set; }
+        public virtual int MetCutOffTime { get; set; }
+        public virtual int MetRunTime { get; set; }
+        public virtual string Mobile { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string PhoneNo { get; set; }
+        public virtual string PlanGroupCode { get; set; }
+        public virtual string Postcode { get; set; }
+        public virtual int RurCutOffTime { get; set; }
+        public virtual int RurRunTime { get; set; }
+        public virtual string StandardNo { get; set; }
+        public virtual int StartTime { get; set; }
+        public virtual string State { get; set; }
+        public virtual string Street { get; set; }
+        public virtual string Suburb { get; set; }
+        public virtual string TpgCode { get; set; }
+        public virtual string WebName { get; set; }
+        public virtual int XdockTime { get; set; }
     }
-     public class DepotMap: ClassMap<Depot>
+
+    public class DepotMap : ClassMap<Depot>
     {
         public DepotMap()
         {
@@ -46,9 +48,10 @@ namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities {
             Id(x => x.DepotCode, "depot_abrv")
                 .Access.Property()
                 .Unique()
-                .Length(3).Not.Nullable()
+                .Length(3)
+                .Not.Nullable()
                 .GeneratedBy.Assigned();
-            
+
             Map(x => x.DepotCode, "depot_abrv").Unique().Length(3).Not.Nullable();
             Map(x => x.TpgCode, "tpg_abrv").Length(3).Not.Nullable();
             Map(x => x.DepotAlias, "dep_alias").Length(6).Not.Nullable();

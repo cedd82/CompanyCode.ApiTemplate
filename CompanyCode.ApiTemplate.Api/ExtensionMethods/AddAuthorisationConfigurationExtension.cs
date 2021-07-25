@@ -29,7 +29,6 @@ namespace CompanyCode.ApiTemplate.Api.ExtensionMethods
 
                         bool authorised = items.Contains(CommonConstants.AuthRoles.Admin);
                         return authorised;
-
                     });
                 });
             });

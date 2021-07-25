@@ -33,6 +33,5 @@ namespace CompanyCode.ApiTemplate.Api.FluentValidators
                 .WithMessage(ErrorMessages.ErrUserPassword.ToString());
             return options;
         }
-        
     }
 }

@@ -14,7 +14,7 @@ namespace CompanyCode.ApiTemplate.Api.FluentValidators.Auth
                 .Length(3, 8)
                 .WithMessage("A0301: Username must be between 3 and 8 characters");
             RuleFor(m => m.Password)
-                .Password(8, 30);
+                .Password();
         }
     }
 }

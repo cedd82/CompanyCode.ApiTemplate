@@ -6,14 +6,6 @@ namespace CompanyCode.ApiTemplate.Common.ExtensionMethods
 {
     public static class ReflectionExtensions
     {
-        public static object GetPropertyValue(this object T, string propName)
-        {
-            return T.GetType()
-                      .GetProperty(propName) == null ? null : T.GetType()
-                      .GetProperty(propName)
-                      ?.GetValue(T, null);
-        }
-
         public static Dictionary<string, object> GetProperties<TDerived, TBase>()
         {
             return Assembly
@@ -26,5 +18,11 @@ namespace CompanyCode.ApiTemplate.Common.ExtensionMethods
                 //.ToDictionary(x => x.Name, x => (object)x.Name);
                 .ToDictionary(x => x.Name, x => x.GetValue(x.Name));
         }
+
+        public static object GetPropertyValue(this object T, string propName) =>
+            T.GetType()
+                .GetProperty(propName) == null ? null : T.GetType()
+                .GetProperty(propName)
+                ?.GetValue(T, null);
     }
 }

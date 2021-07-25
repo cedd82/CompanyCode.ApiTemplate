@@ -3,32 +3,37 @@
     public class CreateUserRequest
     {
         /// <summary>
-        /// email address
+        ///     email address
         /// </summary>
         /// <example>youremail@email.com</example>
         public string EmailAddress { get; set; }
+
         /// <summary>
-        /// firstName
+        ///     firstName
         /// </summary>
         /// <example>john</example>
         public string FirstName { get; set; }
+
         /// <summary>
-        /// lastName
+        ///     lastName
         /// </summary>
         /// <example>smith</example>
         public string LastName { get; set; }
+
         /// <summary>
-        /// mobile number
+        ///     mobile number
         /// </summary>
         /// <example>0418123123</example>
         public string MobileNumber { get; set; }
+
         /// <summary>
-        /// password
+        ///     password
         /// </summary>
         /// <example>YourPassword1!</example>
         public string Password { get; set; }
+
         /// <summary>
-        /// username
+        ///     username
         /// </summary>
         /// <example>Username</example>
         public string Username { get; set; }

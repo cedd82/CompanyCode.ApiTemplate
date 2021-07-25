@@ -2,62 +2,34 @@ using System;
 
 using FluentNHibernate.Mapping;
 
-namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities {
+namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities
+{
     public class BookingVehicleSchdTask
     {
+        public virtual string AppType { get; set; }
 
-        public virtual int BookingNo {get; set;}
-        public virtual int BookingVehicleNo {get; set;}
-        public virtual int ManifestId {get; set;}
-        public virtual string PickupDeliveryFlg {get; set;}
-        public virtual string EventCode {get; set;}
-        public virtual DateTime EntryDate {get; set;}
-        public virtual DateTime StartDate {get; set;}
-        public virtual DateTime CompleteDate {get; set;}
-        public virtual string StatusCode {get; set;}
-        public virtual string IfaceStatusCode {get; set;}
-        public virtual int IsVcmsExtract {get; set;}
-        public virtual DateTime VcmsExtractDate {get; set;}
-        public virtual string AppType {get; set;}
-        public virtual string ProcessReference {get; set;}
+        public virtual int BookingNo { get; set; }
+        public virtual int BookingVehicleNo { get; set; }
+        public virtual DateTime CompleteDate { get; set; }
+        public virtual DateTime EntryDate { get; set; }
+        public virtual string EventCode { get; set; }
+        public virtual string IfaceStatusCode { get; set; }
+        public virtual int IsVcmsExtract { get; set; }
+        public virtual int ManifestId { get; set; }
+        public virtual string PickupDeliveryFlg { get; set; }
+        public virtual string ProcessReference { get; set; }
+        public virtual DateTime StartDate { get; set; }
+        public virtual string StatusCode { get; set; }
+        public virtual DateTime VcmsExtractDate { get; set; }
 
-        protected bool Equals(BookingVehicleSchdTask other)
-        {
-            if (other == null)
-            {
-                return false;
-            }
-
-            return BookingNo.Equals(other.BookingNo)
-                   && BookingVehicleNo.Equals(other.BookingVehicleNo)
-                   && ManifestId.Equals(other.ManifestId)
-                   && PickupDeliveryFlg.Equals(other.PickupDeliveryFlg)
-                   && EventCode.Equals(other.EventCode)
-                   && EntryDate.Equals(other.EntryDate)
-                   && StartDate.Equals(other.StartDate)
-                   && CompleteDate.Equals(other.CompleteDate)
-                   && StatusCode.Equals(other.StatusCode)
-                   && IfaceStatusCode.Equals(other.IfaceStatusCode)
-                   && IsVcmsExtract.Equals(other.IsVcmsExtract)
-                   && VcmsExtractDate.Equals(other.VcmsExtractDate)
-                   && AppType.Equals(other.AppType)
-                   && ProcessReference.Equals(other.ProcessReference);
-        }
-        
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
-            {
                 return false;
-            }
             if (ReferenceEquals(this, obj))
-            {
                 return true;
-            }
-            if (obj.GetType() != typeof (BookingVehicleSchdTask))
-            {
+            if (obj.GetType() != typeof(BookingVehicleSchdTask))
                 return false;
-            }
             return Equals((BookingVehicleSchdTask) obj);
         }
 
@@ -85,28 +57,48 @@ namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities {
                 return hash;
             }
         }
-}
 
+        protected bool Equals(BookingVehicleSchdTask other)
+        {
+            if (other == null)
+                return false;
 
-    public class BookingVehicleSchdTaskMap: ClassMap<BookingVehicleSchdTask>
+            return BookingNo.Equals(other.BookingNo)
+                   && BookingVehicleNo.Equals(other.BookingVehicleNo)
+                   && ManifestId.Equals(other.ManifestId)
+                   && PickupDeliveryFlg.Equals(other.PickupDeliveryFlg)
+                   && EventCode.Equals(other.EventCode)
+                   && EntryDate.Equals(other.EntryDate)
+                   && StartDate.Equals(other.StartDate)
+                   && CompleteDate.Equals(other.CompleteDate)
+                   && StatusCode.Equals(other.StatusCode)
+                   && IfaceStatusCode.Equals(other.IfaceStatusCode)
+                   && IsVcmsExtract.Equals(other.IsVcmsExtract)
+                   && VcmsExtractDate.Equals(other.VcmsExtractDate)
+                   && AppType.Equals(other.AppType)
+                   && ProcessReference.Equals(other.ProcessReference);
+        }
+    }
+
+    public class BookingVehicleSchdTaskMap : ClassMap<BookingVehicleSchdTask>
     {
         public BookingVehicleSchdTaskMap()
         {
             Table("bkg_veh_schd_task");
             CompositeId()
-                .KeyProperty(x => x.BookingNo, keyPropertyAction: k =>
+                .KeyProperty(x => x.BookingNo, k =>
                 {
                     k.ColumnName("bkg_no");
                     k.Type(typeof(int));
                     k.Access.Property();
                 })
-                .KeyProperty(x => x.BookingVehicleNo, keyPropertyAction: k =>
+                .KeyProperty(x => x.BookingVehicleNo, k =>
                 {
                     k.ColumnName("bkg_veh_no");
                     k.Type(typeof(int));
                     k.Access.Property();
                 });
-               
+
             Map(x => x.BookingNo, "bkg_no").Not.Nullable();
             Map(x => x.BookingVehicleNo, "bkg_veh_no").Not.Nullable();
             Map(x => x.ManifestId, "manifest_id").Not.Nullable().Index("bkg_veh_schd_task_2");

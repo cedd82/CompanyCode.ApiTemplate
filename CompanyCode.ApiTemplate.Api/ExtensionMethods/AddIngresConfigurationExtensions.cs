@@ -9,6 +9,7 @@ using FluentNHibernate.Cfg;
 using Microsoft.Extensions.DependencyInjection;
 
 using NHibernate;
+using NHibernate.SqlCommand;
 
 namespace CompanyCode.ApiTemplate.Api.ExtensionMethods
 {
@@ -16,7 +17,7 @@ namespace CompanyCode.ApiTemplate.Api.ExtensionMethods
     {
         public static void AddIngresNHibernateConfiguration(this IServiceCollection services, DatabaseConnections databaseConnections)
         {
-            services.AddSingleton<ISessionFactory>(factory =>
+            services.AddSingleton(factory =>
             {
             #if DEBUG
                 return Fluently
@@ -35,12 +36,12 @@ namespace CompanyCode.ApiTemplate.Api.ExtensionMethods
                     .BuildSessionFactory();
             #endif
             });
-            services.AddScoped<NHibernate.ISession>(s => s.GetService<NHibernate.ISessionFactory>().OpenSession());
+            services.AddScoped(s => s.GetService<ISessionFactory>().OpenSession());
         }
 
         private class QueryInterceptor : EmptyInterceptor
         {
-            public override NHibernate.SqlCommand.SqlString OnPrepareStatement(NHibernate.SqlCommand.SqlString sql)
+            public override SqlString OnPrepareStatement(SqlString sql)
             {
                 Debug.WriteLine(sql.ToString());
                 return sql;

@@ -2,48 +2,26 @@ using System;
 
 using FluentNHibernate.Mapping;
 
-namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities {
+namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities
+{
     public class BookingVehicleDepot
     {
+        public virtual int BookingNo { get; set; }
+        public virtual int BookingVehicleNo { get; set; }
+        public virtual string DepotCode { get; set; }
+        public virtual int IsPickup { get; set; }
+        public virtual string Notes { get; set; }
+        public virtual string OperatorId { get; set; }
+        public virtual DateTime PickupDate { get; set; }
 
-        public virtual int BookingNo {get; set;}
-        public virtual int BookingVehicleNo {get; set;}
-        public virtual string DepotCode {get; set;}
-        public virtual int IsPickup {get; set;}
-        public virtual DateTime PickupDate {get; set;}
-        public virtual string OperatorId {get; set;}
-        public virtual string Notes {get; set;}
-
-        protected bool Equals(BookingVehicleDepot other)
-        {
-            if (other == null)
-            {
-                return false;
-            }
-
-            return BookingNo.Equals(other.BookingNo)
-                   && BookingVehicleNo.Equals(other.BookingVehicleNo)
-                   && DepotCode.Equals(other.DepotCode)
-                   && IsPickup.Equals(other.IsPickup)
-                   && PickupDate.Equals(other.PickupDate)
-                   && OperatorId.Equals(other.OperatorId)
-                   && Notes.Equals(other.Notes);
-        }
-        
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
-            {
                 return false;
-            }
             if (ReferenceEquals(this, obj))
-            {
                 return true;
-            }
-            if (obj.GetType() != typeof (BookingVehicleDepot))
-            {
+            if (obj.GetType() != typeof(BookingVehicleDepot))
                 return false;
-            }
             return Equals((BookingVehicleDepot) obj);
         }
 
@@ -63,22 +41,35 @@ namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities {
                 return hash;
             }
         }
-}
 
+        protected bool Equals(BookingVehicleDepot other)
+        {
+            if (other == null)
+                return false;
 
-    public class BookingVehicleDepotMap: ClassMap<BookingVehicleDepot>
+            return BookingNo.Equals(other.BookingNo)
+                   && BookingVehicleNo.Equals(other.BookingVehicleNo)
+                   && DepotCode.Equals(other.DepotCode)
+                   && IsPickup.Equals(other.IsPickup)
+                   && PickupDate.Equals(other.PickupDate)
+                   && OperatorId.Equals(other.OperatorId)
+                   && Notes.Equals(other.Notes);
+        }
+    }
+
+    public class BookingVehicleDepotMap : ClassMap<BookingVehicleDepot>
     {
         public BookingVehicleDepotMap()
         {
             Table("bkg_veh_depot");
             CompositeId()
-                .KeyProperty(x => x.IsPickup, keyPropertyAction: k =>
+                .KeyProperty(x => x.IsPickup, k =>
                 {
                     k.ColumnName("pkup_ind");
                     k.Type(typeof(int));
                     k.Access.Property();
                 })
-                .KeyProperty(x => x.DepotCode, keyPropertyAction: k =>
+                .KeyProperty(x => x.DepotCode, k =>
                 {
                     k.ColumnName("chklist_tms");
                     k.Type(typeof(DateTime));

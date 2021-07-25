@@ -2,59 +2,32 @@ using System;
 
 using FluentNHibernate.Mapping;
 
-namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities {
+namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities
+{
     public class BookingVehiclePod
     {
+        public virtual DateTime ActualDeliveryDate { get; set; }
+        public virtual DateTime ActualPickupDate { get; set; }
 
-        public virtual int BookingNo {get; set;}
-        public virtual int BookingVehicleNo {get; set;}
-        public virtual DateTime ActualPickupDate {get; set;}
-        public virtual DateTime ActualDeliveryDate {get; set;}
-        public virtual string SentByName {get; set;}
-        public virtual string RecByName {get; set;}
-        public virtual DateTime EntryDate {get; set;}
-        public virtual string PodStatusCode {get; set;}
-        public virtual string PopStatusCode {get; set;}
-        public virtual string PopUpdateMode {get; set;}
-        public virtual string PodUpdateMode {get; set;}
-        public virtual int ManifestId {get; set;}
+        public virtual int BookingNo { get; set; }
+        public virtual int BookingVehicleNo { get; set; }
+        public virtual DateTime EntryDate { get; set; }
+        public virtual int ManifestId { get; set; }
+        public virtual string PodStatusCode { get; set; }
+        public virtual string PodUpdateMode { get; set; }
+        public virtual string PopStatusCode { get; set; }
+        public virtual string PopUpdateMode { get; set; }
+        public virtual string RecByName { get; set; }
+        public virtual string SentByName { get; set; }
 
-        protected bool Equals(BookingVehiclePod other)
-        {
-            if (other == null)
-            {
-                return false;
-            }
-
-            return BookingNo.Equals(other.BookingNo)
-                   && BookingVehicleNo.Equals(other.BookingVehicleNo)
-                   && ActualPickupDate.Equals(other.ActualPickupDate)
-                   && ActualDeliveryDate.Equals(other.ActualDeliveryDate)
-                   && SentByName.Equals(other.SentByName)
-                   && RecByName.Equals(other.RecByName)
-                   && EntryDate.Equals(other.EntryDate)
-                   && RecByName.Equals(other.RecByName)
-                   && PodStatusCode.Equals(other.PodStatusCode)
-                   && PopStatusCode.Equals(other.PopStatusCode)
-                   && PopUpdateMode.Equals(other.PopUpdateMode)
-                   && PodUpdateMode.Equals(other.PodUpdateMode)
-                   && ManifestId.Equals(other.ManifestId);
-        }
-        
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
-            {
                 return false;
-            }
             if (ReferenceEquals(this, obj))
-            {
                 return true;
-            }
-            if (obj.GetType() != typeof (BookingVehiclePod))
-            {
+            if (obj.GetType() != typeof(BookingVehiclePod))
                 return false;
-            }
             return Equals((BookingVehiclePod) obj);
         }
 
@@ -81,22 +54,41 @@ namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities {
                 return hash;
             }
         }
-}
 
+        protected bool Equals(BookingVehiclePod other)
+        {
+            if (other == null)
+                return false;
 
-    public class BookingVehiclePodMap: ClassMap<BookingVehiclePod>
+            return BookingNo.Equals(other.BookingNo)
+                   && BookingVehicleNo.Equals(other.BookingVehicleNo)
+                   && ActualPickupDate.Equals(other.ActualPickupDate)
+                   && ActualDeliveryDate.Equals(other.ActualDeliveryDate)
+                   && SentByName.Equals(other.SentByName)
+                   && RecByName.Equals(other.RecByName)
+                   && EntryDate.Equals(other.EntryDate)
+                   && RecByName.Equals(other.RecByName)
+                   && PodStatusCode.Equals(other.PodStatusCode)
+                   && PopStatusCode.Equals(other.PopStatusCode)
+                   && PopUpdateMode.Equals(other.PopUpdateMode)
+                   && PodUpdateMode.Equals(other.PodUpdateMode)
+                   && ManifestId.Equals(other.ManifestId);
+        }
+    }
+
+    public class BookingVehiclePodMap : ClassMap<BookingVehiclePod>
     {
         public BookingVehiclePodMap()
         {
             Table("bkg_veh_pod");
             CompositeId()
-                .KeyProperty(x => x.BookingNo, keyPropertyAction: k =>
+                .KeyProperty(x => x.BookingNo, k =>
                 {
                     k.ColumnName("bkg_no");
                     k.Type(typeof(int));
                     k.Access.Property();
                 })
-                .KeyProperty(x => x.BookingVehicleNo, keyPropertyAction: k =>
+                .KeyProperty(x => x.BookingVehicleNo, k =>
                 {
                     k.ColumnName("bkg_veh_no");
                     k.Type(typeof(int));

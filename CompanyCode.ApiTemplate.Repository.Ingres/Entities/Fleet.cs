@@ -6,47 +6,48 @@ namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities
 {
     public class Fleet
     {
-        public virtual int FleetId { get; set; }
-        public virtual string FleetPoolCode { get; set; }
-        public virtual string OriginalRailDepotId { get; set; }
-        public virtual string ResponseRailDepotId {get; set;}
-        public virtual string DepotCode { get; set; }
-        public virtual string FleetCode { get; set; }
-        public virtual string FleetConfigCode { get; set; }
-        public virtual string CurrentStatusCode { get; set; }
-        public virtual string CurrentState { get; set; }
-        public virtual string CurrentSuburb { get; set; }
-        public virtual int Capacity { get; set; }
-        public virtual int PartyId { get; set; }
-        public virtual int IsPlanRurTrip { get; set; }
-        public virtual DateTime WrkEta { get; set; }
-        public virtual int NumberTrips { get; set; }
-        public virtual string PlanLocation { get; set; }
-        public virtual int IsPlanFull { get; set; }
         public virtual int AlternateFleetId { get; set; }
-        public virtual int IsVirtualFleet { get; set; }
-        public virtual string BusinessServiceCode {get; set;}
-        public virtual string OperatorId { get; set; }        
-        public virtual DateTime CreateDate {get; set;}
-        public virtual DateTime UpdateDate {get; set;}
-        public virtual int FleetGroupId { get; set; }
-        public virtual int IsApplySeq { get; set; }
-        public virtual int IsLogDelete {get; set;}
-        public virtual int IsIgnorePsPrint {get; set;}
-        public virtual int DefCapacity {get; set;}
-        public virtual string EquipmentType {get; set;}
-        public virtual string GloCode { get; set; }
-        public virtual int IsPodReq { get; set; }
-        public virtual int IsExtCarrier { get; set; }
+        public virtual string BusinessServiceCode { get; set; }
+        public virtual int Capacity { get; set; }
+        public virtual DateTime CreateDate { get; set; }
+        public virtual string CurrentState { get; set; }
+        public virtual string CurrentStatusCode { get; set; }
+        public virtual string CurrentSuburb { get; set; }
+        public virtual int DefCapacity { get; set; }
+        public virtual string DepotCode { get; set; }
         public virtual string EmailId1 { get; set; }
         public virtual string EmailId2 { get; set; }
         public virtual string EmailId3 { get; set; }
-        public virtual string Url { get; set; }
-        public virtual int IsVlStor { get; set; }
+        public virtual string EquipmentType { get; set; }
+        public virtual string FleetCode { get; set; }
+        public virtual string FleetConfigCode { get; set; }
+        public virtual int FleetGroupId { get; set; }
+        public virtual int FleetId { get; set; }
+        public virtual string FleetPoolCode { get; set; }
+        public virtual string GloCode { get; set; }
+        public virtual int IsApplySeq { get; set; }
+        public virtual int IsExtCarrier { get; set; }
+        public virtual int IsIgnorePsPrint { get; set; }
         public virtual int IsLockout { get; set; }
+        public virtual int IsLogDelete { get; set; }
+        public virtual int IsPlanFull { get; set; }
+        public virtual int IsPlanRurTrip { get; set; }
+        public virtual int IsPodReq { get; set; }
+        public virtual int IsVirtualFleet { get; set; }
+        public virtual int IsVlStor { get; set; }
+        public virtual int NumberTrips { get; set; }
+        public virtual string OperatorId { get; set; }
+        public virtual string OriginalRailDepotId { get; set; }
 
         public virtual Party Party { get; set; }
+        public virtual int PartyId { get; set; }
+        public virtual string PlanLocation { get; set; }
+        public virtual string ResponseRailDepotId { get; set; }
+        public virtual DateTime UpdateDate { get; set; }
+        public virtual string Url { get; set; }
+        public virtual DateTime WrkEta { get; set; }
     }
+
     public class FleetMap : ClassMap<Fleet>
     {
         public FleetMap()
@@ -60,12 +61,12 @@ namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities
             References(x => x.Party).Column("party_id");
             // worked sorta b4
             //References(x => x.Party, "party_id").Unique();
-            
+
             //References(x => x.Party).Not.Nullable().Column("party_id").PropertyRef(x => x.PartyId).ForeignKey("none");
             //HasOne( x => x.Party ).PropertyRef(x=>x.PartyId);
             //References(x => x.ProductDescription).Not.Nullable().Column("ItemId").PropertyRef(x => x.ItemId).ForeignKey("none");
             //References(x => x.Party).Column("party_id").PropertyRef(x => x.PartyId).ForeignKey("none").ReadOnly();
-            
+
             //	CONSTRAINT FLEET_PK PRIMARY KEY (fleet_id)
             //);
             //CREATE INDEX fleet_1 ON dba.fleet (fleet_pool_code,fleet_id,party_id);

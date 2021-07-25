@@ -16,28 +16,6 @@ namespace CompanyCode.ApiTemplate.Repository.SqlServer
 {
     public partial class SqlServerDbContext
     {
-        private void RejectChanges()
-        {
-            foreach (EntityEntry entry in ChangeTracker.Entries().Where(e => e.Entity != null).ToList())
-            {
-                switch (entry.State)
-                {
-                    case EntityState.Modified:
-                    case EntityState.Deleted:
-                        entry.State = EntityState.Modified;
-                        entry.State = EntityState.Unchanged;
-                        break;
-                    case EntityState.Added:
-                        entry.State = EntityState.Detached;
-                        break;
-                    case EntityState.Detached:
-                        break;
-                    case EntityState.Unchanged:
-                        break;
-                }
-            }
-        }
-
         public override int SaveChanges()
         {
             try
@@ -130,7 +108,30 @@ namespace CompanyCode.ApiTemplate.Repository.SqlServer
             {
                 Debug.WriteLine($"Entity: {entry.Entity.GetType().Name}, State: {entry.State} ");
             }
+
             Debug.WriteLine("");
+        }
+
+        private void RejectChanges()
+        {
+            foreach (EntityEntry entry in ChangeTracker.Entries().Where(e => e.Entity != null).ToList())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Modified:
+                    case EntityState.Deleted:
+                        entry.State = EntityState.Modified;
+                        entry.State = EntityState.Unchanged;
+                        break;
+                    case EntityState.Added:
+                        entry.State = EntityState.Detached;
+                        break;
+                    case EntityState.Detached:
+                        break;
+                    case EntityState.Unchanged:
+                        break;
+                }
+            }
         }
     }
 }

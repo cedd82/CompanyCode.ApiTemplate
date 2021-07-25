@@ -2,22 +2,23 @@
 
 using FluentNHibernate.Mapping;
 
-namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities {
+namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities
+{
     public class Driver
     {
-        public virtual int PartyId {get; set;}
-        public virtual decimal DistanceBasePayRate {get; set;}
-        public virtual DateTime LicenceExpiryDate {get; set;}
-        public virtual string LicenceNo {get; set;}
-        public virtual string LicenceState {get; set;}
-        public virtual string EmployeeId {get; set;}
-        public virtual int SubContractorPartyId {get; set;}
-        public virtual string CurrentStatusCode {get; set;}
-        public virtual string GPSTagNo {get; set;}
-        public virtual int IsTagActive {get; set;}
+        public virtual string CurrentStatusCode { get; set; }
+        public virtual decimal DistanceBasePayRate { get; set; }
+        public virtual string EmployeeId { get; set; }
+        public virtual string GPSTagNo { get; set; }
+        public virtual int IsTagActive { get; set; }
+        public virtual DateTime LicenceExpiryDate { get; set; }
+        public virtual string LicenceNo { get; set; }
+        public virtual string LicenceState { get; set; }
+        public virtual int PartyId { get; set; }
+        public virtual int SubContractorPartyId { get; set; }
     }
 
-    public class DriverMap: ClassMap<Driver>
+    public class DriverMap : ClassMap<Driver>
     {
         public DriverMap()
         {

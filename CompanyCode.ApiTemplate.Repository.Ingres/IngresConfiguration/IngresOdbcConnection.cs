@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Cfg.Db;
 
+using NHibernate.Dialect;
 using NHibernate.Driver;
 
 namespace CompanyCode.ApiTemplate.Repository.Ingres.IngresConfiguration
@@ -10,12 +11,12 @@ namespace CompanyCode.ApiTemplate.Repository.Ingres.IngresConfiguration
         {
             Driver<OdbcDriver>();
         }
-        
+
         public static IngresOdbcConnection CustomIngress
         {
             get
             {
-                IngresOdbcConnection ingresOdbcConnection = new IngresOdbcConnection().Dialect<NHibernate.Dialect.Ingres9Dialect>();
+                IngresOdbcConnection ingresOdbcConnection = new IngresOdbcConnection().Dialect<Ingres9Dialect>();
             #if DEBUG
                 ingresOdbcConnection.ShowSql();
                 ingresOdbcConnection.FormatSql();

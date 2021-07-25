@@ -10,7 +10,7 @@ using CompanyCode.ApiTemplate.Common.Configuration;
 using CompanyCode.ApiTemplate.Common.Email;
 using CompanyCode.ApiTemplate.Common.ErrorMessages;
 
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 
@@ -24,9 +24,9 @@ namespace CompanyCode.ApiTemplate.Api.Middleware
 {
     public class ExceptionHandlerMiddleware
     {
+        private const int OneHundred28Kb = 128000;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly RequestDelegate _next;
-        private const int OneHundred28Kb = 128000;
 
         public ExceptionHandlerMiddleware(RequestDelegate next)
         {
@@ -69,6 +69,21 @@ namespace CompanyCode.ApiTemplate.Api.Middleware
             }
         }
 
+#pragma warning disable CA1822 // Mark members as static
+        private async Task<string> GetRequestBodyAsync(HttpContext context)
+#pragma warning restore CA1822 // Mark members as static
+        {
+            if (context.Request.Body.Length > OneHundred28Kb)
+                return $"body size {context.Request.Body.Length} is larger than 128KB; too large to seralise.";
+
+            await using MemoryStream stream = new();
+            context.Request.Body.Seek(0, SeekOrigin.Begin);
+            await context.Request.Body.CopyToAsync(stream);
+            string requestBody = Encoding.UTF8.GetString(stream.ToArray());
+            context.Request.Body.Seek(0, SeekOrigin.Begin);
+            return requestBody;
+        }
+
         private async Task HandleExceptionAsync(HttpContext context,
                                                 Exception exception,
                                                 IEmailService emailService,
@@ -82,59 +97,38 @@ namespace CompanyCode.ApiTemplate.Api.Middleware
             bool? isAuthenticated = context.User?.Identity?.IsAuthenticated;
             string userCode = null;
             if (isAuthenticated == true)
-            {
                 userCode = context.User?.Identity?.Name;
-            }
 
             string requestBody = string.Empty;
             bool catchBody = true;
             bool sendErrorEmail = true;
 
-            if (exceptionType == typeof(Microsoft.AspNetCore.Connections.ConnectionResetException))
+            if (exceptionType == typeof(ConnectionResetException))
             {
-                catchBody = false;
+                catchBody      = false;
                 sendErrorEmail = false;
             }
-            
+
             if (catchBody && appSettings.CapturePostRequestBodyOnError && httpRequest.Method == "POST")
-            {
                 requestBody = await GetRequestBodyAsync(context);
-            }
 
             if (sendErrorEmail)
-            {
-                SendErrorEmail(exception, emailService, appLifetime, httpRequest, isAuthenticated, requestBody, userCode);
-            }
+                SendErrorEmail(exception, emailService, appLifetime, httpRequest, isAuthenticated, requestBody,
+                               userCode);
 
             HttpResponse response = context.Response;
             response.ContentType = "application/json";
             response.StatusCode  = (int) HttpStatusCode.BadRequest;
             await response.WriteAsync(JsonConvert.SerializeObject(new
-            {
-                Status = new
                 {
-                    Message = CommonErrorMessages.ApiException.ToString(),
-                    CommonErrorMessages.ApiException.Level,
-                    Timestamp = DateTime.Now.ToString("s")
-                }
-            })).ConfigureAwait(false);
-        }
-
-#pragma warning disable CA1822 // Mark members as static
-        private async Task<string> GetRequestBodyAsync(HttpContext context)
-#pragma warning restore CA1822 // Mark members as static
-        {
-            if (context.Request.Body.Length > OneHundred28Kb)
-            {
-                return $"body size {context.Request.Body.Length} is larger than 128KB; too large to seralise.";
-            }
-
-            await using MemoryStream stream = new();
-            context.Request.Body.Seek(0, SeekOrigin.Begin);
-            await context.Request.Body.CopyToAsync(stream);
-            string requestBody = Encoding.UTF8.GetString(stream.ToArray());
-            context.Request.Body.Seek(0, SeekOrigin.Begin);
-            return requestBody;
+                    Status = new
+                    {
+                        Message = CommonErrorMessages.ApiException.ToString(),
+                        CommonErrorMessages.ApiException.Level,
+                        Timestamp = DateTime.Now.ToString("s")
+                    }
+                }))
+                .ConfigureAwait(false);
         }
 
         private static void SendErrorEmail(Exception exception,

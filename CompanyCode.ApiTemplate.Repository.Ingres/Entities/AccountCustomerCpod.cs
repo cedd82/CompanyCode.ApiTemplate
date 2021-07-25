@@ -2,44 +2,45 @@ using System;
 
 using FluentNHibernate.Mapping;
 
-namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities {
+namespace CompanyCode.ApiTemplate.Repository.Ingres.Entities
+{
     public class AccountCustomerCpod
     {
+        public virtual int AccountCustomerNo { get; set; }
+        public virtual string AlertMessageGroup { get; set; }
+        public virtual int BookingConf { get; set; }
+        public virtual int DamageAlert { get; set; }
+        public virtual int DeliveryConf { get; set; }
+        public virtual int DeliveryPhotoCount { get; set; }
+        public virtual int DisableEbkgEdit { get; set; }
+        public virtual string GroupAccountName { get; set; }
+        public virtual string InterfaceType { get; set; }
+        public virtual int IsGeofence { get; set; }
+        public virtual int IsOeSurvey { get; set; }
+        public virtual int IsVinScan { get; set; }
+        public virtual int IsVsr { get; set; }
+        public virtual int OePickupScan { get; set; }
+        public virtual string OeSurveyConditionName { get; set; }
+        public virtual string OeSurveyDamageName { get; set; }
+        public virtual string OeSurveyType { get; set; }
+        public virtual string OperatorId { get; set; }
+        public virtual int PickupConf { get; set; }
+        public virtual int PickupPhotoCount { get; set; }
+        public virtual int PreDeliveryConf { get; set; }
+        public virtual DateTime UpdateDate { get; set; }
+        public virtual string UsedSurveyConditionName { get; set; }
+        public virtual string UsedSurveyDamageName { get; set; }
+    }
 
-        public virtual int AccountCustomerNo {get; set;}
-        public virtual int IsOeSurvey {get; set;}
-        public virtual int BookingConf {get; set;}
-        public virtual int DeliveryConf {get; set;}
-        public virtual int DeliveryPhotoCount {get; set;}
-        public virtual int DamageAlert {get; set;}
-        public virtual int PickupConf {get; set;}
-        public virtual int PickupPhotoCount {get; set;}
-        public virtual int PreDeliveryConf {get; set;}
-        public virtual int DisableEbkgEdit {get; set;}
-        public virtual string InterfaceType {get; set;}
-        public virtual string GroupAccountName {get; set;}
-        public virtual string AlertMessageGroup {get; set;}
-        public virtual int IsVinScan {get; set;}
-        public virtual string OperatorId {get; set;}
-        public virtual DateTime UpdateDate {get; set;}
-        public virtual int OePickupScan {get; set;}
-        public virtual int IsVsr {get; set;}
-        public virtual int IsGeofence {get; set;}
-        public virtual string OeSurveyType {get; set;}
-        public virtual string OeSurveyConditionName {get; set;}
-        public virtual string OeSurveyDamageName {get; set;}
-        public virtual string UsedSurveyConditionName {get; set;}
-        public virtual string UsedSurveyDamageName {get; set;}
-}
-
-    public class AccountCustomerCpodMap: ClassMap<AccountCustomerCpod>
+    public class AccountCustomerCpodMap : ClassMap<AccountCustomerCpod>
     {
         public AccountCustomerCpodMap()
         {
             Table("acc_cus_cpod");
             Id(x => x.AccountCustomerNo, "acc_cus_no")
                 .Access.Property()
-                .Unique().Not.Nullable()
+                .Unique()
+                .Not.Nullable()
                 .GeneratedBy.Assigned();
 
             Map(x => x.AccountCustomerNo, "acc_cus_no").Not.Nullable();

@@ -15,7 +15,10 @@ namespace CompanyCode.ApiTemplate.Repository.Ingres
     {
         private readonly DatabaseConnections _databaseConnections;
 
-        public IngresAccessService(DatabaseConnections databaseConnections) => _databaseConnections = databaseConnections;
+        public IngresAccessService(DatabaseConnections databaseConnections)
+        {
+            _databaseConnections = databaseConnections;
+        }
 
         public async Task<string> ExecuteStoredProcedureAsync(string procedure, OdbcParameter[] odbcParameters)
         {
@@ -31,6 +34,7 @@ namespace CompanyCode.ApiTemplate.Repository.Ingres
                 else
                     paramList += ",?";
             }
+
             OdbcCommand oc = new($"{{?=call {procedure}({paramList})}}", connection);
             OdbcParameter opRetValue = new("return_val", OdbcType.Int)
             {
@@ -41,6 +45,7 @@ namespace CompanyCode.ApiTemplate.Repository.Ingres
             {
                 oc.Parameters.Add(odp);
             }
+
             await oc.ExecuteNonQueryAsync();
             await connection.CloseAsync();
             return output;

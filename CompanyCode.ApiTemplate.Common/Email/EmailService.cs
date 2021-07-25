@@ -16,12 +16,12 @@ namespace CompanyCode.ApiTemplate.Common.Email
         private readonly AppSettings _appSettings;
         private readonly EmailSettings _emailSettings;
         private readonly ILogger<EmailService> _logger;
-        
+
         public EmailService(EmailSettings emailSettings, AppSettings appSettings, ILogger<EmailService> logger)
         {
-            _emailSettings     = emailSettings;
-            _logger            = logger;
-            _appSettings = appSettings;
+            _emailSettings = emailSettings;
+            _logger        = logger;
+            _appSettings   = appSettings;
         }
 
         public Result SendEmail(string toEmailAddresses, string subject, string body, Attachment attachment = null)
@@ -115,7 +115,7 @@ namespace CompanyCode.ApiTemplate.Common.Email
                 _logger.LogCritical(exception, $"Unable to send error email Recipients {_emailSettings.ErrorEmailRecipients}");
             }
         }
-        
+
         private void SendErrorEmail(string toEmailAddresses, string subject, string body, Attachment attachment = null)
         {
             string fromEmail = !string.IsNullOrEmpty(_emailSettings.FromEmail) ? _emailSettings.FromEmail : "au.sys@cevalogistics.com";
