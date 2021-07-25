@@ -1,6 +1,6 @@
 ﻿namespace CompanyCode.ApiTemplate.Common.Configuration
 {
-    public class CommonAppSettings
+    public class AppSettings
     {
         public string ApplicationName { get; set; }
         public string ApplicationVersion { get; set; }

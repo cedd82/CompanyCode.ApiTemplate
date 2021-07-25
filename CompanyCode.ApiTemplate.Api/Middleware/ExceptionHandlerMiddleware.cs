@@ -35,9 +35,8 @@ namespace CompanyCode.ApiTemplate.Api.Middleware
 
         public async Task Invoke(HttpContext context,
                                  IEmailService emailService,
-                                 IWebHostEnvironment hostingEnvironment,
                                  IHostApplicationLifetime appLifetime,
-                                 CommonAppSettings commonAppSettings,
+                                 AppSettings appSettings,
                                  IHttpContextAccessor httpContextAccessor)
         {
             try
@@ -53,20 +52,20 @@ namespace CompanyCode.ApiTemplate.Api.Middleware
                     string exceptionString = $"{exception}";
                     if (exceptionString.Contains("NHibernate.Connection.DriverConnectionProvider.GetConnection()"))
                     {
-                        if (commonAppSettings.StopAppOnOdbcConnectionFailure)
+                        if (appSettings.StopAppOnOdbcConnectionFailure)
                         {
                             appLifetime.StopApplication();
                             CancellationToken cancellationToken = appLifetime.ApplicationStopped;
                             Logger.Error($"Stopping application IsCancellationRequested:{cancellationToken.IsCancellationRequested} CanBeCanceled:{cancellationToken.CanBeCanceled}");
                         }
 
-                        await HandleExceptionAsync(context, exception, emailService, appLifetime, httpContextAccessor, hostingEnvironment, commonAppSettings);
+                        await HandleExceptionAsync(context, exception, emailService, appLifetime, httpContextAccessor, appSettings);
                     }
                 }
             }
             catch (Exception exception)
             {
-                await HandleExceptionAsync(context, exception, emailService, appLifetime, httpContextAccessor, hostingEnvironment, commonAppSettings);
+                await HandleExceptionAsync(context, exception, emailService, appLifetime, httpContextAccessor, appSettings);
             }
         }
 
@@ -75,13 +74,10 @@ namespace CompanyCode.ApiTemplate.Api.Middleware
                                                 IEmailService emailService,
                                                 IHostApplicationLifetime appLifetime,
                                                 IHttpContextAccessor httpContextAccessor,
-                                                IWebHostEnvironment hostingEnvironment,
-                                                CommonAppSettings commonAppSettings)
+                                                AppSettings appSettings)
         {
             Logger.Error(exception, $"Unhandled Exception message: {exception.Message}");
             Type exceptionType = exception.GetType();
-            Exception innerException = exception.InnerException;
-            Type innerExceptionType = innerException?.GetType();
             HttpRequest httpRequest = httpContextAccessor.HttpContext.Request;
             bool? isAuthenticated = context.User?.Identity?.IsAuthenticated;
             string userCode = null;
@@ -93,10 +89,6 @@ namespace CompanyCode.ApiTemplate.Api.Middleware
             string requestBody = string.Empty;
             bool catchBody = true;
             bool sendErrorEmail = true;
-            if (httpRequest.Path == "/ManifestProcesses/saveVehiclePhotos")
-            {
-                catchBody = false;
-            }
 
             if (exceptionType == typeof(Microsoft.AspNetCore.Connections.ConnectionResetException))
             {
@@ -104,14 +96,14 @@ namespace CompanyCode.ApiTemplate.Api.Middleware
                 sendErrorEmail = false;
             }
             
-            if (catchBody && commonAppSettings.CapturePostRequestBodyOnError && httpRequest.Method == "POST")
+            if (catchBody && appSettings.CapturePostRequestBodyOnError && httpRequest.Method == "POST")
             {
                 requestBody = await GetRequestBodyAsync(context);
             }
 
             if (sendErrorEmail)
             {
-                SendErrorEmail(exception, emailService, appLifetime, httpRequest, isAuthenticated, requestBody, userCode, exceptionType, innerExceptionType);
+                SendErrorEmail(exception, emailService, appLifetime, httpRequest, isAuthenticated, requestBody, userCode);
             }
 
             HttpResponse response = context.Response;
@@ -127,11 +119,11 @@ namespace CompanyCode.ApiTemplate.Api.Middleware
                 }
             })).ConfigureAwait(false);
         }
-        
+
+#pragma warning disable CA1822 // Mark members as static
         private async Task<string> GetRequestBodyAsync(HttpContext context)
+#pragma warning restore CA1822 // Mark members as static
         {
-            // protect api against failure on large byte size payloads, known issue where model binding fails where req > 64kb
-            // https://stackoverflow.com/questions/49672813/request-with-size-over-64kb-fails-to-complete-asp-net-core-web-api
             if (context.Request.Body.Length > OneHundred28Kb)
             {
                 return $"body size {context.Request.Body.Length} is larger than 128KB; too large to seralise.";
@@ -151,9 +143,7 @@ namespace CompanyCode.ApiTemplate.Api.Middleware
                                            HttpRequest httpRequest,
                                            bool? isAuthenticated,
                                            string requestBody,
-                                           string userCode,
-                                           Type exceptionType,
-                                           Type innerExceptionType)
+                                           string userCode)
         {
             string body = $@"
                             Request: {httpRequest.Method} {httpRequest.Scheme}://{httpRequest.Host}{httpRequest.Path}{httpRequest.QueryString}
@@ -163,8 +153,6 @@ namespace CompanyCode.ApiTemplate.Api.Middleware
                             {requestBody}
 
                             UserCode: {userCode}
-                            ExceptionType: {exceptionType.Name}
-                            InnerExceptionTypeIfAny: {innerExceptionType?.Name}
                             StopApplication Called: {appLifetime.ApplicationStopped.IsCancellationRequested}
                             Exception: {exception}";
             string subject = $"Unhandled Exception caught in global exception handler {exception.Message}";

@@ -11,16 +11,12 @@ namespace CompanyCode.ApiTemplate.Api.ExtensionMethods
 {
     public static class AddPostgresConfigurationExtensions
     {
-        public static void AddPostgresDbContextConfiguration(this IServiceCollection services,
-            DatabaseConnections databaseConnections,
-            //ILoggerFactory loggerFactory,
-            IWebHostEnvironment hostingEnvironment)
+        public static void AddPostgresDbContextConfiguration(this IServiceCollection services, DatabaseConnections databaseConnections, IWebHostEnvironment hostingEnvironment)
         {
             services.AddDbContext<PostgresDbContext>(options =>
             {
                 options.UseNpgsql(databaseConnections.PostgresDatabaseConnection);
-                //options.UseLoggerFactory(loggerFactory);
-                EventId[] events = new[] {new EventId(7777, "in memory linq execution in vlms")};
+                EventId[] events = new[] {new EventId(7777, "in memory linq execution")};
                 if (hostingEnvironment.IsDevelopment())
                 {
                     options.EnableSensitiveDataLogging();

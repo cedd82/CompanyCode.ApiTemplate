@@ -13,15 +13,15 @@ namespace CompanyCode.ApiTemplate.Common.Email
 {
     public class EmailService : IEmailService
     {
-        private readonly CommonAppSettings _commonAppSettings;
+        private readonly AppSettings _appSettings;
         private readonly EmailSettings _emailSettings;
         private readonly ILogger<EmailService> _logger;
         
-        public EmailService(EmailSettings emailSettings, CommonAppSettings commonAppSettings, ILogger<EmailService> logger)
+        public EmailService(EmailSettings emailSettings, AppSettings appSettings, ILogger<EmailService> logger)
         {
             _emailSettings     = emailSettings;
             _logger            = logger;
-            _commonAppSettings = commonAppSettings;
+            _appSettings = appSettings;
         }
 
         public Result SendEmail(string toEmailAddresses, string subject, string body, Attachment attachment = null)
@@ -31,7 +31,7 @@ namespace CompanyCode.ApiTemplate.Common.Email
 
             List<string> allEmails = toEmailAddresses.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries).Select(e => e.ToLower()).ToList();
             List<string> cevaEmails = allEmails.Where(e => e.Contains("@cevalogistics.com")).ToList();
-            List<string> emailsToSend = _commonAppSettings.EnvironmentName == "Production" ? allEmails : cevaEmails;
+            List<string> emailsToSend = _appSettings.EnvironmentName == "Production" ? allEmails : cevaEmails;
 
             try
             {
@@ -67,7 +67,7 @@ namespace CompanyCode.ApiTemplate.Common.Email
 
             List<string> allEmails = toEmailAddresses.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries).Select(e => e.ToLower()).ToList();
             List<string> cevaEmails = allEmails.Where(e => e.Contains("@cevalogistics.com")).ToList();
-            List<string> emailsToSend = _commonAppSettings.EnvironmentName == "Production" ? allEmails : cevaEmails;
+            List<string> emailsToSend = _appSettings.EnvironmentName == "Production" ? allEmails : cevaEmails;
 
             try
             {
@@ -104,7 +104,7 @@ namespace CompanyCode.ApiTemplate.Common.Email
                 return;
             try
             {
-                subject = $"ERROR: {_commonAppSettings.ApplicationName} : {subject}";
+                subject = $"ERROR: {_appSettings.ApplicationName} : {subject}";
                 subject = subject.Trim().Replace('\r', ' ').Replace('\n', ' ');
                 subject = subject.Substring(0, Math.Min(subject.Length, 200));
                 string recipients = _emailSettings.ErrorEmailRecipients;

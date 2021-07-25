@@ -22,15 +22,12 @@
 
         public static class AuthRoles
         {
-            public const string CevaSiteOperator = "CSO";
-            public const string CevaSiteSupervisor = "CSS";
-            public const string CevaSiteAdmin = "CSA";
-            public const string BillingAdmin = "BIL";
-            public const string WharfOperatorMobile = "MWO";
-            public const string YardOperatorMobile = "MYO";
-            public const string Driver = "DRV";
-            public const string RailYardStaff = "RST";
-            public const string Agent = "AGT";
+            public const string Admin = "Admin";
+        }
+
+        public static class AuthPolicies
+        {
+            public const string Admin = "Admin";
         }
     }
 }
